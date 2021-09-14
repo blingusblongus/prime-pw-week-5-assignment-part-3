@@ -96,4 +96,9 @@ function search(crit){
 
 //test search
 console.log('\n*** Testing search ***');
-console.log(search({artist: 'Thundercat'}));
+console.log('Test single property search:');
+console.log(search({artist: 'Thundercat'})); // should return two albums
+console.log('\nTest multi-prop search');
+console.log(search({artist: 'Thundercat', yearPublished: 2009})); //should return 1
+console.log('\nTest no-prop search');
+console.log(search({}));
