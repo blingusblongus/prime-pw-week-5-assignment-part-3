@@ -69,7 +69,7 @@ function search(crit){
 
   //loop through Collection
   for(let album of collection){
-    console.log('checking', album.title);
+    console.log('\nchecking', album.title);
     let meetsCrit = true;
 
     //check each parameter of the criteria
@@ -82,6 +82,7 @@ function search(crit){
       if(crit[prop] !== album[prop]){
         console.log(crit[prop], ' does not match ', album[prop]);
         meetsCrit = false;
+        break;
       }
     }
 
@@ -96,9 +97,13 @@ function search(crit){
 
 //test search
 console.log('\n*** Testing search ***');
-console.log('Test single property search:');
+console.log('Test single property search============');
 console.log(search({artist: 'Thundercat'})); // should return two albums
-console.log('\nTest multi-prop search');
+console.log('\nTest multi-prop search==========');
 console.log(search({artist: 'Thundercat', yearPublished: 2009})); //should return 1
-console.log('\nTest no-prop search');
+console.log('\nTest no-prop search=============');
 console.log(search({}));
+//test
+
+
+//start addTracks() ========================
