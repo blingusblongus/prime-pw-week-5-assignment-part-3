@@ -26,7 +26,7 @@ console.log('***Testing addToCollection');
 //console.log(collection);
 collection.forEach((obj) => console.log(obj));
 
-
+// Start showCollection ==============
 function showCollection(array){
   //return number of items in array
   console.log('Number of items:', array.length);
@@ -44,3 +44,19 @@ function showCollection(array){
 //testing showCollection
 console.log('\n***Testing showCollection***');
 showCollection(collection);
+
+//start findByArtist ===================
+function findByArtist(artist){
+  const result = [];
+
+  for(let album of collection){
+    if(album.artist === artist) result.push(album);
+  }
+
+  return result;
+}
+
+//testing findByArtist
+console.log('\n***Testing findByArtist***');
+console.log(findByArtist('Thundercat')); //should return 2 albums
+console.log(findByArtist('Phish')); //should return 0 albums
