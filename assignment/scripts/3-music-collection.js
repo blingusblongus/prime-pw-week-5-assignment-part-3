@@ -60,3 +60,40 @@ function findByArtist(artist){
 console.log('\n***Testing findByArtist***');
 console.log(findByArtist('Thundercat')); //should return 2 albums
 console.log(findByArtist('Phish')); //should return 0 albums
+
+
+
+//start search ======================
+function search(crit){
+  const result = [];
+
+  //loop through Collection
+  for(let album of collection){
+    console.log('checking', album.title);
+    let meetsCrit = true;
+
+    //check each parameter of the criteria
+    for(let prop in crit){
+      //console.log(prop);
+      //console.log(album[prop]);
+      //console.log(crit[prop]);
+
+      //if requested prop doesn't match, meetsCrit => false
+      if(crit[prop] !== album[prop]){
+        console.log(crit[prop], ' does not match ', album[prop]);
+        meetsCrit = false;
+      }
+    }
+
+    //if doesn't meetsCrit, skip to next album;
+    if(!meetsCrit) continue;
+    //if none fail, push to result
+    console.log('full match for', album.title);
+    result.push(album);
+  }
+  return result;
+}
+
+//test search
+console.log('\n*** Testing search ***');
+console.log(search({artist: 'Thundercat'}));
