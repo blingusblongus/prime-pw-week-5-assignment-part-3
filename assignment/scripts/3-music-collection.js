@@ -15,7 +15,8 @@ function addToCollection(title, artist, yearPublished, tracks) {
 }
 
 //add the albums to the collection
-addToCollection('Apocalypse', 'Thundercat', 2009, [{
+addToCollection('Apocalypse', 'Thundercat', 2009, [
+  {
   trackName: 'Tenfold',
   duration: '3:04'
 },
@@ -106,7 +107,6 @@ console.log(findByArtist('Thundercat')); //should return 2 albums
 console.log(findByArtist('Phish')); //should return 0 albums
 
 
-
 //start search ======================
 function search(crit){
   const result = [];
@@ -122,8 +122,18 @@ function search(crit){
       //console.log(album[prop]);
       //console.log(crit[prop]);
 
-      //if requested prop doesn't match, meetsCrit => false
-      if(crit[prop] !== album[prop]){
+      //notes for fixing later:
+      // conditional is not perfect
+      // maybe it's enough if tracks just doesn't match
+      //specific to trackName
+      if(prop === 'trackName' && album.tracks){
+        console.log(prop, ' = trackName');
+        for(let track of album.tracks){
+          if(crit[prop] === album[track]){
+            meetsCrit === true;
+          }
+        }
+      }else if (crit[prop] !== album[prop]){
         console.log(crit[prop], ' does not match ', album[prop]);
         meetsCrit = false;
         break; // prevents unnecessary checking
@@ -148,8 +158,12 @@ console.log(search({artist: 'Thundercat', yearPublished: 2009})); //should retur
 console.log('\nTest no-prop search=============');
 console.log(search({}));
 
+console.log('\nTest trackName search ==========');
+console.log(search({trackName: 'The Life Aquatic'}))
 
-const apocalypseTracks = [{
+
+const apocalypseTracks = [
+  {
   trackName: 'Tenfold',
   duration: '3:04'
 },
@@ -192,4 +206,4 @@ const apocalypseTracks = [{
 },{
   trackName: 'A Message for Austin/Praise the Lord/Enter the Void',
   duration: '6:35'
-}];
+}]; // just for arranging/testing
