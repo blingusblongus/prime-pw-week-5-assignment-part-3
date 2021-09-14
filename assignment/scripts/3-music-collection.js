@@ -22,6 +22,7 @@ addToCollection('The Optimist', 'Cory Wong', 2018);
 addToCollection('Covers', 'Dirty Loops', 2014);
 
 //testing addToCollection
+console.log('***Testing addToCollection');
 //console.log(collection);
 collection.forEach((obj) => console.log(obj));
 
@@ -41,4 +42,5 @@ function showCollection(array){
 }
 
 //testing showCollection
+console.log('\n***Testing showCollection***');
 showCollection(collection);
