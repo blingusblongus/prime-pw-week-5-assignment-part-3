@@ -82,7 +82,7 @@ function search(crit){
       if(crit[prop] !== album[prop]){
         console.log(crit[prop], ' does not match ', album[prop]);
         meetsCrit = false;
-        break;
+        break; // prevents unnecessary checking
       }
     }
 
