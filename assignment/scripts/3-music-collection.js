@@ -126,14 +126,34 @@ function search(crit){
       // conditional is not perfect
       // maybe it's enough if tracks just doesn't match
       //specific to trackName
-      if(prop === 'trackName' && album.tracks){
-        console.log(prop, ' = trackName');
+
+      //if trackName exists
+      if(prop === 'trackName'){
+        let hasTrack = false;
+        console.log('prop trackName: ', prop);
+        //if the album has no tracks, flag false and stop checking props
+        if(!album.tracks){
+          meetsCrit = false;
+          break;
+        }
+
+        //if album does have tracks, check for the given track
         for(let track of album.tracks){
-          if(crit[prop] === album[track]){
-            meetsCrit === true;
+          console.log(track);
+          console.log(crit[prop]);
+          console.log(track.trackName)
+          if(crit[prop] === track.trackName){
+            console.log('crit[prop]: ', crit[prop], '= track.trackName: ', track.trackName);
           }
         }
-      }else if (crit[prop] !== album[prop]){
+
+        //if the album has the track, flag meetsCrit true;
+        if(hasTrack) meetsCrit = true;
+      }
+
+
+      // check criteria
+      if (crit[prop] !== album[prop]){
         console.log(crit[prop], ' does not match ', album[prop]);
         meetsCrit = false;
         break; // prevents unnecessary checking
