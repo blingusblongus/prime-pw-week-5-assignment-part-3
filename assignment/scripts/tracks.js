@@ -1,4 +1,6 @@
-export const apocalypseTracks = [
+export {apocalypseTracks};
+
+const apocalypseTracks = [
   {
   trackName: 'Tenfold',
   duration: '3:04'
