@@ -118,6 +118,7 @@ function search(crit){
 
     //check each parameter of the criteria
     for(let prop in crit){
+      const search = crit[prop];
       //console.log(prop);
       //console.log(album[prop]);
       //console.log(crit[prop]);
@@ -127,6 +128,7 @@ function search(crit){
       // maybe it's enough if tracks just doesn't match
       //specific to trackName
 
+      /* paused while I make trackhelper
       //if trackName exists
       if(prop === 'trackName'){
         let hasTrack = false;
@@ -143,18 +145,31 @@ function search(crit){
           console.log(crit[prop]);
           console.log(track.trackName)
           if(crit[prop] === track.trackName){
-            console.log('crit[prop]: ', crit[prop], '= track.trackName: ', track.trackName);
+            console.log('track match!');
+            hasTrack = true;
           }
         }
 
+
         //if the album has the track, flag meetsCrit true;
         if(hasTrack) meetsCrit = true;
+        console.log('prop:', prop, 'meetsCrit',)
       }
+      */
+      console.log('prop: ', prop);
 
+      if(prop === 'trackName'){
+        console.log('checking trackname...')
+        console.log('searching for: ', search, 'in album: ', album.title);
 
-      // check criteria
-      if (crit[prop] !== album[prop]){
-        console.log(crit[prop], ' does not match ', album[prop]);
+        //run helper function
+        if(!checkTracks(search, album)){
+          console.log('no tracks match');
+          meetsCrit = false;
+          break;
+        }
+      }else if (search !== album[prop]){ //check normal criteria
+        console.log(search, ' does not match ', album[prop]);
         meetsCrit = false;
         break; // prevents unnecessary checking
       }
@@ -167,6 +182,24 @@ function search(crit){
     result.push(album);
   }
   return result;
+}
+
+// helper function to return true if album contains track
+function checkTracks(searchTrack, album){
+  console.log('checkTracks - searchtrack: ', searchTrack, ', album: ', album.title);
+  if(!album.tracks){
+    console.log('no track info');
+    return false;
+  }else{
+    for(let track of album.tracks){
+      if(searchTrack === track.trackName){
+        console.log('track matches!');
+        return true;
+      }
+    }
+  }
+  return false;
+
 }
 
 //test search
