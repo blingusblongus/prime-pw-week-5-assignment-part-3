@@ -1,4 +1,7 @@
 console.log('***** Music Collection *****')
+import {apocalypseTracks} from './tracks.js';
+console.log('apocalypseTracks', apocalypseTracks);
+
 
 const collection = [];
 
@@ -122,40 +125,6 @@ function search(crit){
       //console.log(prop);
       //console.log(album[prop]);
       //console.log(crit[prop]);
-
-      //notes for fixing later:
-      // conditional is not perfect
-      // maybe it's enough if tracks just doesn't match
-      //specific to trackName
-
-      /* paused while I make trackhelper
-      //if trackName exists
-      if(prop === 'trackName'){
-        let hasTrack = false;
-        console.log('prop trackName: ', prop);
-        //if the album has no tracks, flag false and stop checking props
-        if(!album.tracks){
-          meetsCrit = false;
-          break;
-        }
-
-        //if album does have tracks, check for the given track
-        for(let track of album.tracks){
-          console.log(track);
-          console.log(crit[prop]);
-          console.log(track.trackName)
-          if(crit[prop] === track.trackName){
-            console.log('track match!');
-            hasTrack = true;
-          }
-        }
-
-
-        //if the album has the track, flag meetsCrit true;
-        if(hasTrack) meetsCrit = true;
-        console.log('prop:', prop, 'meetsCrit',)
-      }
-      */
       console.log('prop: ', prop);
 
       if(prop === 'trackName'){
@@ -214,53 +183,6 @@ console.log('\nTest no-prop search=============');
 console.log(search({}));
 
 console.log('\nTest trackName search ==========');
-console.log(search({trackName: 'The Life Aquatic'}));
-console.log('should return apocalypse: ', search({trackName: 'The Life Aquatic', title: 'Apocalypse'})); //should return apocalype
-console.log('should return empty:', search({trackName: 'The Life Aquatic', title: 'The Beyond / Where the Giants Roam'})); //should return empty
-
-
-const apocalypseTracks = [
-  {
-  trackName: 'Tenfold',
-  duration: '3:04'
-},
-{
-  trackName: 'Heartbreaks + Setbacks',
-  duration: '3:23'
-},
-{
-  trackName: 'The Life Aquatic',
-  duration: '2:36'
-},
-{
-  trackName: 'Special Stage',
-  duration: '2:56'
-},
-{
-  trackName: 'Tron Song',
-  duration: '2:34'
-},
-{
-  trackName: 'Seven',
-  duration: '2:16'
-},
-{
-  trackName: 'Oh Sheit It\'s X',
-  duration: '3:47'
-},
-{
-  trackName: 'Without You',
-  duration: '4:41'
-},{
-  trackName: 'Lotus and the Jondy',
-  duration: '4:52'
-},{
-  trackName: 'Evangelion',
-  duration: '2:20'
-},{
-  trackName: 'We\'ll Die',
-  duration: '0:55'
-},{
-  trackName: 'A Message for Austin/Praise the Lord/Enter the Void',
-  duration: '6:35'
-}]; // just for arranging/testing
+console.log('#########should return apocalypse', search({trackName: 'The Life Aquatic'}));
+console.log('###########should return apocalypse: ', search({trackName: 'The Life Aquatic', title: 'Apocalypse'})); //should return apocalype
+console.log('########should return empty:', search({trackName: 'The Life Aquatic', title: 'The Beyond / Where the Giants Roam'})); //should return empty
