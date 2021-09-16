@@ -167,8 +167,11 @@ function search(crit){
           console.log('no tracks match');
           meetsCrit = false;
           break;
+        }else{
+          meetsCrit = true;
         }
       }else if (search !== album[prop]){ //check normal criteria
+        console.log('search: ', search, ' prop: ', prop);
         console.log(search, ' does not match ', album[prop]);
         meetsCrit = false;
         break; // prevents unnecessary checking
@@ -182,9 +185,9 @@ function search(crit){
     result.push(album);
   }
   return result;
-}
+} // search() end ====================
 
-// helper function to return true if album contains track
+// helper function to return true if album contains track===
 function checkTracks(searchTrack, album){
   console.log('checkTracks - searchtrack: ', searchTrack, ', album: ', album.title);
   if(!album.tracks){
@@ -199,8 +202,7 @@ function checkTracks(searchTrack, album){
     }
   }
   return false;
-
-}
+} // checkTracks() end================
 
 //test search
 console.log('\n*** Testing search ***');
@@ -212,7 +214,9 @@ console.log('\nTest no-prop search=============');
 console.log(search({}));
 
 console.log('\nTest trackName search ==========');
-console.log(search({trackName: 'The Life Aquatic'}))
+console.log(search({trackName: 'The Life Aquatic'}));
+console.log('should return apocalypse: ', search({trackName: 'The Life Aquatic', title: 'Apocalypse'})); //should return apocalype
+console.log('should return empty:', search({trackName: 'The Life Aquatic', title: 'The Beyond / Where the Giants Roam'})); //should return empty
 
 
 const apocalypseTracks = [
