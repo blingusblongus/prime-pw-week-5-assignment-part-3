@@ -1,6 +1,8 @@
 console.log('***** Music Collection *****')
-import {apocalypseTracks, folkloreTracks} from './tracks.js';
-console.log('apocalypseTracks', apocalypseTracks);
+//I don't know how modules work in html so I just added a script tag to import
+//   tracks.js instead
+//import {apocalypseTracks, folkloreTracks} from './tracks.js';
+//console.log('apocalypseTracks', apocalypseTracks); just checking import
 
 // declare and fill collection array;
 const collection = [];
@@ -40,7 +42,17 @@ function showCollection(array){
     const artist = album.artist;
     const year = album.yearPublished;
 
-    console.log(`${title} by ${artist}, published in ${year}`)
+    console.log(`${title} by ${artist}, published in ${year}`);
+
+    if(album.tracks){
+      //print tracklist if it exists
+      for(let i=0; i<album.tracks.length; i++){
+        console.log(`  ${i + 1}. ${album.tracks[i].trackName}`);
+      }
+    }else{
+      //print 'no info' if !album.tracks
+      console.log('  No Track Info');
+    }
   }
 }
 
