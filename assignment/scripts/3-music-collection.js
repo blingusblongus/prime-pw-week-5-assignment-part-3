@@ -1,45 +1,44 @@
 console.log('***** Music Collection *****')
-import {apocalypseTracks} from './tracks.js';
+import {apocalypseTracks, folkloreTracks} from './tracks.js';
 console.log('apocalypseTracks', apocalypseTracks);
 
-
+// declare and fill collection array;
 const collection = [];
-
-function addToCollection(title, artist, yearPublished, tracks) {
-  const obj = {
-    title: title,
-    artist: artist,
-    yearPublished: yearPublished,
-    tracks: tracks
-  };
-
-  collection.push(obj);
-  return obj;
-}
-
-//add the albums to the collection
 addToCollection('Apocalypse', 'Thundercat', 2009, apocalypseTracks);
 addToCollection('7Summers', 'Shaun Martin', 2015);
 addToCollection('Motivational Music for the Syncopated Soul', 'Cory Wong', 2019);
 addToCollection('The Beyond / Where the Giants Roam', 'Thundercat', 2015);
 addToCollection('The Optimist', 'Cory Wong', 2018);
 addToCollection('Covers', 'Dirty Loops', 2014);
+addToCollection('Folklore', 'Taylor Swift', 2020, folkloreTracks);
+
+function addToCollection(title, artist, yearPublished, tracks) {
+  const album = {
+    title: title,
+    artist: artist,
+    yearPublished: yearPublished,
+    tracks: tracks
+  };
+
+  collection.push(album);
+  return album;
+}
 
 //testing addToCollection
 console.log('***Testing addToCollection');
-//console.log(collection);
+//console.log(collection); // initial collection test
 collection.forEach((obj) => console.log(obj));
 
-// Start showCollection ==============
+// Start showCollection ====================================
 function showCollection(array){
   //return number of items in array
   console.log('Number of items:', array.length);
 
-  //display info:
-  for(let obj of array){
-    const title = obj.title;
-    const artist = obj.artist;
-    const year = obj.yearPublished;
+  //display info for each album in collection:
+  for(let album of array){
+    const title = album.title;
+    const artist = album.artist;
+    const year = album.yearPublished;
 
     console.log(`${title} by ${artist}, published in ${year}`)
   }
@@ -49,7 +48,7 @@ function showCollection(array){
 console.log('\n***Testing showCollection***');
 showCollection(collection);
 
-//start findByArtist ===================
+//start findByArtist ====================================
 function findByArtist(artist){
   const result = [];
 
@@ -66,7 +65,7 @@ console.log(findByArtist('Thundercat')); //should return 2 albums
 console.log(findByArtist('Phish')); //should return 0 albums
 
 
-//start search ======================
+//start search ======================================
 function search(crit){
   const result = [];
 
@@ -81,7 +80,7 @@ function search(crit){
       //console.log(prop);
       //console.log(album[prop]);
       //console.log(crit[prop]);
-      console.log('prop: ', prop);
+      console.log('checking prop: ', prop);
 
       if(prop === 'trackName'){
         console.log('checking trackname...')
@@ -103,33 +102,37 @@ function search(crit){
       }
     }
 
-    //if doesn't meetsCrit, skip to next album;
+    //if doesn't meet criteria, skip to next album;
     if(!meetsCrit) continue;
-    //if none fail, push to result
+    //if no criteria tests fail, push to result
     console.log('full match for', album.title);
     result.push(album);
   }
   return result;
-} // search() end ====================
+} // search() end =====================================
 
-// helper function to return true if album contains track===
-function checkTracks(searchTrack, album){
-  console.log('checkTracks - searchtrack: ', searchTrack, ', album: ', album.title);
+// start checkTracks - helper function returns true if album contains track=====
+function checkTracks(searchTrackName, album){
+  //log arguments for reference
+  console.log('checkTracks - searchTrackName: ', searchTrackName, ', album: ', album.title);
+
+  //check if album has track info
   if(!album.tracks){
     console.log('no track info');
     return false;
   }else{
+    //loop through tracks and return true on match
     for(let track of album.tracks){
-      if(searchTrack === track.trackName){
+      if(searchTrackName === track.trackName){
         console.log('track matches!');
         return true;
       }
     }
   }
   return false;
-} // checkTracks() end================
+} // checkTracks() end=================================
 
-//test search
+//test search()
 console.log('\n*** Testing search ***');
 console.log('Test single property search============');
 console.log(search({artist: 'Thundercat'})); // should return two albums
@@ -142,3 +145,5 @@ console.log('\nTest trackName search ==========');
 console.log('#########should return apocalypse', search({trackName: 'The Life Aquatic'}));
 console.log('###########should return apocalypse: ', search({trackName: 'The Life Aquatic', title: 'Apocalypse'})); //should return apocalype
 console.log('########should return empty:', search({trackName: 'The Life Aquatic', title: 'The Beyond / Where the Giants Roam'})); //should return empty
+console.log('########should return Apocaplse AND Folklore:', search({trackName: 'Seven'}));
+console.log('########should return ONLY Folklore: ', search({trackName: 'Seven', artist: 'Taylor Swift'}));
