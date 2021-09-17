@@ -24,7 +24,7 @@ addToCollection('Motivational Music for the Syncopated Soul', 'Cory Wong', 2019)
 addToCollection('The Beyond / Where the Giants Roam', 'Thundercat', 2015);
 addToCollection('The Optimist', 'Cory Wong', 2018);
 addToCollection('Covers', 'Dirty Loops', 2014);
-addToCollection('Folklore', 'Taylor Swift', 2020);
+addToCollection('Folklore', 'Taylor Swift', 2020, folkloreTracks);
 
 //testing addToCollection
 console.log('***Testing addToCollection');
@@ -143,3 +143,5 @@ console.log('\nTest trackName search ==========');
 console.log('#########should return apocalypse', search({trackName: 'The Life Aquatic'}));
 console.log('###########should return apocalypse: ', search({trackName: 'The Life Aquatic', title: 'Apocalypse'})); //should return apocalype
 console.log('########should return empty:', search({trackName: 'The Life Aquatic', title: 'The Beyond / Where the Giants Roam'})); //should return empty
+console.log('########should return Apocaplse AND Folklore:', search({trackName: 'Seven'}));
+console.log('########should return ONLY Folklore: ', search({trackName: 'Seven', artist: 'Taylor Swift'}));
