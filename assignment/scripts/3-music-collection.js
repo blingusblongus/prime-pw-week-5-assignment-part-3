@@ -1,5 +1,5 @@
 console.log('***** Music Collection *****')
-import {apocalypseTracks} from './tracks.js';
+import {apocalypseTracks, folkloreTracks} from './tracks.js';
 console.log('apocalypseTracks', apocalypseTracks);
 
 
@@ -24,6 +24,7 @@ addToCollection('Motivational Music for the Syncopated Soul', 'Cory Wong', 2019)
 addToCollection('The Beyond / Where the Giants Roam', 'Thundercat', 2015);
 addToCollection('The Optimist', 'Cory Wong', 2018);
 addToCollection('Covers', 'Dirty Loops', 2014);
+addToCollection('Folklore', 'Taylor Swift', 2020);
 
 //testing addToCollection
 console.log('***Testing addToCollection');
