@@ -95,6 +95,7 @@ function search(crit){
       //console.log(crit[prop]);
       console.log('checking prop: ', prop);
 
+      //check and run helper function if the search prop is 'trackName'
       if(prop === 'trackName'){
         console.log('checking trackname...')
         console.log('searching for: ', search, 'in album: ', album.title);
