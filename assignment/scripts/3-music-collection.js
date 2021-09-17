@@ -58,6 +58,7 @@ function showCollection(array){
 
 //testing showCollection
 console.log('\n***Testing showCollection***');
+console.log('Album collection:');
 showCollection(collection);
 
 //start findByArtist ====================================
@@ -73,8 +74,8 @@ function findByArtist(artist){
 
 //testing findByArtist
 console.log('\n***Testing findByArtist***');
-console.log(findByArtist('Thundercat')); //should return 2 albums
-console.log(findByArtist('Phish')); //should return 0 albums
+console.log('Should return 2 Thundercat albums:', findByArtist('Thundercat')); //should return 2 albums
+console.log('Should return 0:', findByArtist('Phish')); //should return 0 albums
 
 
 //start search ======================================
@@ -121,7 +122,7 @@ function search(crit){
     result.push(album);
   }
   return result;
-} // search() end =====================================
+}
 
 // start checkTracks - helper function returns true if album contains track=====
 function checkTracks(searchTrackName, album){
@@ -142,7 +143,7 @@ function checkTracks(searchTrackName, album){
     }
   }
   return false;
-} // checkTracks() end=================================
+}
 
 //test search()
 console.log('\n*** Testing search ***');
